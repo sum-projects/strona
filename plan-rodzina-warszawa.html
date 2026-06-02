@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wizyta rodziny — Warszawa, 3–6 czerwca 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Spline+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f7f0e3;
+    --paper:#fffaf0;
+    --ink:#2b1d13;
+    --cocoa:#3a2417;
+    --cocoa-deep:#241510;
+    --terra:#c0532b;
+    --gold:#cf9a3e;
+    --red:#a8141d;
+    --green:#4f6b3a;
+    --muted:#7c6650;
+    --line:rgba(43,29,19,.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Spline Sans",sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(120% 80% at 100% 0%, #fbf4e7 0%, var(--cream) 55%),
+      var(--cream);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    padding:0 0 80px;
+  }
+  .wrap{max-width:900px;margin:0 auto;padding:0 22px}
+
+  /* ---------- Header ---------- */
+  header{
+    background:
+      radial-gradient(140% 120% at 0% 0%, #4a2c1b 0%, var(--cocoa-deep) 70%);
+    color:var(--cream);
+    padding:54px 0 46px;
+    position:relative;
+    overflow:hidden;
+    border-bottom:4px solid var(--gold);
+  }
+  header::after{
+    content:"";position:absolute;inset:0;
+    background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);
+    background-size:18px 18px;opacity:.6;pointer-events:none;
+  }
+  .eyebrow{
+    font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--gold);font-weight:600;margin-bottom:14px;
+  }
+  header h1{
+    font-family:"Fraunces",serif;font-weight:900;
+    font-size:clamp(2.4rem,7vw,4.2rem);line-height:.98;letter-spacing:-.01em;
+  }
+  header h1 em{font-style:italic;font-weight:500;color:var(--gold)}
+  .dates{
+    margin-top:18px;font-size:1.05rem;color:#e6d6bf;
+    display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+  }
+  .dates b{color:var(--cream);font-weight:600}
+  .holiday-flag{
+    display:inline-block;margin-top:18px;background:var(--red);color:#fff;
+    font-size:.8rem;font-weight:500;padding:7px 13px;border-radius:30px;
+    letter-spacing:.02em;
+  }
+
+  /* ---------- Legend ---------- */
+  .legend{
+    display:flex;flex-wrap:wrap;gap:10px 18px;margin:26px 0 6px;
+    font-size:.85rem;color:var(--muted);align-items:center;
+  }
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .dot{width:13px;height:13px;border-radius:4px;display:inline-block}
+  .dot.meal{background:var(--terra)}
+  .dot.book{background:var(--gold)}
+  .dot.warn{background:var(--red)}
+
+  /* ---------- Day cards ---------- */
+  .day{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:18px;
+    margin-top:26px;
+    padding:0 0 8px;
+    box-shadow:0 18px 40px -28px rgba(43,29,19,.55);
+    overflow:hidden;
+    opacity:0;transform:translateY(16px);
+    animation:rise .6s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  .day:nth-child(1){animation-delay:.05s}
+  .day:nth-child(2){animation-delay:.13s}
+  .day:nth-child(3){animation-delay:.21s}
+  .day:nth-child(4){animation-delay:.29s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.day{animation:none;opacity:1;transform:none}}
+
+  .day-head{
+    display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+    padding:22px 26px 16px;
+    border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,#fff6e6 0%,transparent 100%);
+  }
+  .day-num{
+    font-family:"Fraunces",serif;font-weight:900;font-size:2.7rem;
+    color:var(--terra);line-height:.8;
+  }
+  .day-meta{display:flex;flex-direction:column}
+  .day-weekday{font-family:"Fraunces",serif;font-style:italic;font-size:1.45rem;font-weight:600}
+  .day-month{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .day-tag{
+    margin-left:auto;align-self:center;font-size:.74rem;font-weight:600;
+    padding:5px 11px;border-radius:20px;letter-spacing:.02em;
+  }
+  .tag-holiday{background:#f4dcdc;color:var(--red)}
+  .tag-chill{background:#e4ecd9;color:var(--green)}
+
+  ul.timeline{list-style:none;padding:8px 26px 6px}
+  ul.timeline li{
+    display:grid;grid-template-columns:64px 1fr;gap:14px;
+    padding:13px 0;border-bottom:1px dashed var(--line);
+    align-items:start;
+  }
+  ul.timeline li:last-child{border-bottom:none}
+  .t-time{
+    font-family:"Fraunces",serif;font-weight:600;font-size:.95rem;
+    color:var(--cocoa);padding-top:1px;
+  }
+  .t-time.none{color:var(--muted);font-style:italic;font-weight:400;font-size:.82rem}
+  .t-body .t-title{font-weight:600;font-size:1.02rem}
+  .t-body .t-note{font-size:.88rem;color:var(--muted);margin-top:2px}
+  .t-body a{color:var(--terra);text-decoration:none;border-bottom:1px solid rgba(192,83,43,.35)}
+
+  /* item flavour */
+  li.meal .t-title::before{content:"🍴 ";}
+  li.meal .t-title{color:var(--terra)}
+  .pill{
+    display:inline-block;font-size:.7rem;font-weight:600;border-radius:20px;
+    padding:2px 9px;margin-left:8px;vertical-align:middle;letter-spacing:.02em;
+  }
+  .pill.book{background:#fbeccb;color:#8a6418}
+  .pill.warn{background:#f6dada;color:var(--red)}
+  .pill.move{background:#e2ecdc;color:var(--green)}
+
+  /* ---------- Checklist ---------- */
+  .checklist{
+    margin-top:34px;background:var(--cocoa);color:var(--cream);
+    border-radius:18px;padding:28px 26px 24px;border:1px solid #000;
+  }
+  .checklist h2{
+    font-family:"Fraunces",serif;font-weight:900;font-size:1.6rem;margin-bottom:4px;
+  }
+  .checklist .sub{color:#d9c4a6;font-size:.86rem;margin-bottom:18px}
+  .checklist ul{list-style:none}
+  .checklist li{
+    display:flex;gap:13px;align-items:flex-start;padding:11px 0;
+    border-bottom:1px solid rgba(255,255,255,.1);font-size:.95rem;
+  }
+  .checklist li:last-child{border-bottom:none}
+  .box{
+    flex:0 0 auto;width:19px;height:19px;border:2px solid var(--gold);
+    border-radius:5px;margin-top:2px;
+  }
+  .checklist b{color:#ffe6b8}
+
+  footer{
+    text-align:center;color:var(--muted);font-size:.8rem;margin-top:34px;
+  }
+  footer .heart{color:var(--terra)}
+
+  @media (max-width:540px){
+    ul.timeline li{grid-template-columns:54px 1fr;gap:10px}
+    .day-head{padding:18px 18px 14px}
+    ul.timeline{padding:6px 18px}
+  }
+  @media print{
+    body{background:#fff;padding:0}
+    header{background:#fff;color:#000;border-bottom:2px solid #000}
+    .eyebrow,header h1 em,.holiday-flag,.day-num,.t-time{color:#000 !important}
+    .day{box-shadow:none;animation:none;opacity:1;transform:none;break-inside:avoid}
+    .checklist{background:#fff;color:#000;border:1px solid #000}
+    .checklist b,.checklist .sub{color:#000}
+    .box{border-color:#000}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Plan wizyty · rodzina</div>
+    <h1>Cztery dni<br><em>w Warszawie</em></h1>
+    <div class="dates"><b>śr 3</b> → <b>sob 6 czerwca 2026</b></div>
+    <div class="holiday-flag">⛪ Czwartek 4.06 — Boże Ciało: sklepy zamknięte, rano procesje</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="legend">
+    <span><i class="dot meal"></i> posiłek</span>
+    <span><i class="dot book"></i> do rezerwacji / sprawdzenia</span>
+  </div>
+
+  <!-- ŚRODA -->
+  <section class="day">
+    <div class="day-head">
+      <div class="day-num">03</div>
+      <div class="day-meta">
+        <div class="day-weekday">Środa</div>
+        <div class="day-month">Czerwiec · przyjazd</div>
+      </div>
+    </div>
+    <ul class="timeline">
+      <li>
+        <div class="t-time">21:00</div>
+        <div class="t-body"><div class="t-title">Przyjazd</div></div>
+      </li>
+      <li class="meal">
+        <div class="t-time none">kolacja</div>
+        <div class="t-body">
+          <div class="t-title">Carbonara</div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- CZWARTEK -->
+  <section class="day">
+    <div class="day-head">
+      <div class="day-num">04</div>
+      <div class="day-meta">
+        <div class="day-weekday">Czwartek</div>
+        <div class="day-month">Czerwiec · Praga / Centrum</div>
+      </div>
+      <div class="day-tag tag-holiday">Boże Ciało</div>
+    </div>
+    <ul class="timeline">
+      <li class="meal">
+        <div class="t-time none">śniadanie</div>
+        <div class="t-body"><div class="t-title">Smażony twaróg z pomidorami</div></div>
+      </li>
+      <li>
+        <div class="t-time">12:00</div>
+        <div class="t-body">
+          <div class="t-title">Fabryka Czekolady Wedla<span class="pill book">rezerwuj</span></div>
+          <div class="t-note">Wejście na konkretną godzinę z biletu, spóźnialscy nie wchodzą · ~90 min z przewodnikiem.
+            <a href="https://fabrykaczekolady.pl/" target="_blank" rel="noopener">Bilety online</a> — i potwierdź, że 4.06 (święto) czynne.</div>
+        </div>
+      </li>
+      <li>
+        <div class="t-time none">potem</div>
+        <div class="t-body">
+          <div class="t-title">Spacer parkiem nad Jeziorkiem Kamionkowskim + taras widokowy</div>
+          <div class="t-note">Sama fabryka ma taras na 6. piętrze z widokiem na jezioro i PGE Narodowy — „taras PGE" masz więc w bilecie (wejście na sam stadion to osobna, płatna atrakcja).</div>
+        </div>
+      </li>
+      <li>
+        <div class="t-time none">opcja</div>
+        <div class="t-body">
+          <div class="t-title">Taras widokowy PKiN</div>
+          <div class="t-note"></div>
+        </div>
+      </li>
+      <li>
+        <div class="t-time none">dojazd</div>
+        <div class="t-body">
+          <div class="t-title">Metro M2: Stadion Narodowy → Świętokrzyska</div>
+          <div class="t-note">3 przystanki, bez przesiadki.</div>
+        </div>
+      </li>
+      <li class="meal">
+        <div class="t-time none">obiad</div>
+        <div class="t-body"><div class="t-title">Na mieście</div></div>
+      </li>
+      <li class="meal">
+        <div class="t-time none">kolacja</div>
+        <div class="t-body"><div class="t-title">Zamówione — pizza / kebab</div></div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- PIĄTEK -->
+  <section class="day">
+    <div class="day-head">
+      <div class="day-num">05</div>
+      <div class="day-meta">
+        <div class="day-weekday">Piątek</div>
+        <div class="day-month">Czerwiec · zwykły dzień roboczy</div>
+      </div>
+    </div>
+    <ul class="timeline">
+      <li class="meal">
+        <div class="t-time none">śniadanie</div>
+        <div class="t-body"><div class="t-title">Szakszuka</div></div>
+      </li>
+      <li>
+        <div class="t-time">11:50</div>
+        <div class="t-body"><div class="t-title">Escape room<span class="pill book">rezerwacja</span></div></div>
+      </li>
+      <li>
+        <div class="t-time none">potem</div>
+        <div class="t-body"><div class="t-title">Plac zabaw nieopodal</div></div>
+      </li>
+      <li class="meal">
+        <div class="t-time none">obiad</div>
+        <div class="t-body"><div class="t-title">Bagiel włosko-autorski</div></div>
+      </li>
+      <li>
+        <div class="t-time">18:00</div>
+        <div class="t-body"><div class="t-title">Kościół</div></div>
+      </li>
+      <li class="meal">
+        <div class="t-time none">kolacja</div>
+        <div class="t-body"><div class="t-title">Zamawiany hindus + placki hinduskie Asi</div></div>
+      </li>
+      <li>
+        <div class="t-time">21:30</div>
+        <div class="t-body">
+          <div class="t-title">Multimedialny Park Fontann — pokaz „Wielkie Serca"</div>
+          <div class="t-note">Pokaz gra pt + sob o 21:30 (30 min, wstęp wolny).</div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- SOBOTA -->
+  <section class="day">
+    <div class="day-head">
+      <div class="day-num">06</div>
+      <div class="day-meta">
+        <div class="day-weekday">Sobota</div>
+        <div class="day-month">Czerwiec · Stare Miasto</div>
+      </div>
+      <div class="day-tag tag-chill">poranny chill</div>
+    </div>
+    <ul class="timeline">
+      <li class="meal">
+        <div class="t-time none">śniadanie</div>
+        <div class="t-body"><div class="t-title">Burger śniadaniowy w bułce bawarskiej z jajecznicą-sosem</div></div>
+      </li>
+      <li>
+        <div class="t-time none">rano</div>
+        <div class="t-body"><div class="t-title">Poranny chill</div></div>
+      </li>
+      <li>
+        <div class="t-time">~12:00</div>
+        <div class="t-body">
+          <div class="t-title">Muzeum Ewolucji</div>
+          <div class="t-note">W czwartek byłoby zamknięte (Boże Ciało). W sobotę czynne do 16:00 (kasa do 15:30) — krótkie, ~1 h, dinozaury. Stąd kawałek do starówki.</div>
+        </div>
+      </li>
+      <li>
+        <div class="t-time none">potem</div>
+        <div class="t-body">
+          <div class="t-title">Spacer po Starym Mieście</div>
+          <div class="t-note">Plac Zamkowy → Świętojańska → Rynek → bulwary wiślane → park fontann (przejściem, pokaz był w piątek).</div>
+        </div>
+      </li>
+      <li class="meal">
+        <div class="t-time none">obiad</div>
+        <div class="t-body"><div class="t-title">Zapiecek</div><div class="t-note">Na starówce, czynny codziennie — wpada po drodze.</div></div>
+      </li>
+      <li>
+        <div class="t-time none">powrót</div>
+        <div class="t-body"><div class="t-title">Nemezis (planszówka)</div></div>
+      </li>
+      <li class="meal">
+        <div class="t-time none">kolacja</div>
+        <div class="t-body"><div class="t-title">Parówki z tostami</div></div>
+      </li>
+    </ul>
+  </section>
+
+  <footer>Plan rodzinny · Warszawa 3–6 czerwca 2026 ·<span class="heart">♥</span></footer>
+
+</div>
+</body>
+</html>
